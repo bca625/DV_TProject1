@@ -1,0 +1,12 @@
+---
+  output: html_document
+---
+  Data Visualization Project 4: College Basektball Statistic for the 2014-2015 Season
+===
+  **Bryan Amaefule, Shannon Lu, Kevin Lee**
+  
+  For this project we have selected statsistc's from the NCAA Division 1 Men's basketball.
+  
+  ![](./pics/Crosstab.png)
+  ![](./pics/Scatterplot.png)
+  ![](./pics/Assistsrebounds.png)
