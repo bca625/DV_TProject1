@@ -71,7 +71,7 @@ We use a key performance indicator to classify the scoring performance according
 
 While the scoreboard ultimately decides who wins or loses the ball game, there is much more to the game of basketball than just scoring points. Players can make their mark on the stat sheets on both offense and defense contributing through assists, rebounds, blocks, and steals.  
 
-**Assists and Rebound by Position**
+**Assists and Rebounds by Position**
 Offensively, players can facilitate by creating scoring opportunities for their teammates and racking up assists. Taller, more athletic players can also snag rebounds of a missed shot, allowing the team another chance at scoring. We plot both the assist and rebound numbers of each player against the amount of minutes they played. To provide a little more insight into how each role contributes, we color each point of the scatter plot by position.  
 
   ![](./pics/Assistsrebounds.png) 
