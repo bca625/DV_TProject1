@@ -66,7 +66,7 @@ Narrowing our view down to just the Big 12 conference, we can create a crosstab 
 
   ![](./pics/Big12Crosstab.png) 
   
-We use a key performance indicator to classify the scoring performance according to where they fit within the quartiles. Scoring performances within the first quartile are labelled "Low", second quartile labelled "Below Average", third quartile labelled "Above Average", and fourth quartile labelled "High". Keep in mind that these are averages for ALL played at each position, so Myles Turners's 10.15 points per game would be averaged with fellow Freshman Forward Jordan Barnett's 1.90 points per game. 
+We use a key performance indicator to classify the scoring performance according to where they fit within the quartiles. Scoring performances within the first quartile are labelled "Low", second quartile labelled "Below Average", third quartile labelled "Above Average", and fourth quartile labelled "High". Keep in mind that these are averages for ALL players at each position, so a performance like Myles Turners's 10.15 points per game would be averaged with fellow Freshman Forward Jordan Barnett's 1.90 points per game. 
 
 
 While the scoreboard ultimately decides who wins or loses the ball game, there is much more to the game of basketball than just scoring points. Players can make their mark on the stat sheets on both offense and defense contributing through assists, rebounds, blocks, and steals.  
