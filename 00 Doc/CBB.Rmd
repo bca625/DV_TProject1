@@ -49,7 +49,8 @@ It takes a good amount of skill and talent to make it on to a Division I college
 **Visualizations** 
 
 **Points By Division**
-There are two big barometers in determining how successful a team is: how good are their players? and how tough was their competition? A team with a winning record in some conference full of scrubs like the AEC, isn't going to get the same credit or recognition as a team who battled it out through the grueling SEC or ACC conferences. To get a look at just how these conferences stack up against each other, we've created a bar chart of the total points scored by the schools in each division.
+There are two big barometers in determining how successful a team is: how good are their players? and how tough was their competition? A team with a winning record in some conference full of scrubs like the AEC, isn't going to get the same credit or recognition as a team who battled it out through the grueling SEC or ACC conferences. To get a look at just how these conferences stack up against each other, we've created a bar chart of the total points scored by the schools in each division using the average amount of points and the 95% confidence interval as a reference line.
+
   ![](./pics/PointsByDivision.png)
   
 We can see the conferences that stand out above the rest. The ACC with powerhouses like Duke, North Carolina, Virginia, and Louisville; and the SEC with the 38-1 Kentucky Wildcats. And if you look *right* on the reference line you'll see the Big 12 conference, home to the University of Texas at Austin, sitting perfectly at the average. 
