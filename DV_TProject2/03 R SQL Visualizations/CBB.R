@@ -20,4 +20,75 @@ ggplot(df, aes(CONF, PTS, fill=CONF)) + geom_bar(stat="identity") + coord_flip()
 #Produce Second bar chart, rotated on its side so you can actually read the conferences
 ggplot(df, aes(CONF, PTS, fill=POS)) + geom_bar(stat="identity") + coord_flip()
 
+#PNN = Position Not NUll
+PNN <- df %>% filter(POS != "null") %>% tbl_df
 
+#Assist by Position
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  labs(title='Assists By Position') +
+  labs(x="Minutes Played", y=paste("Assists")) +
+  layer(data=PNN, 
+        mapping=aes(x=MP, y=AST, color=POS), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="point",
+        geom_params=list(), 
+        #position=position_identity()
+        position=position_jitter(width=0.3, height=0)
+  )
+
+#Rebounds by Position
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  labs(title='Rebounds By Position') +
+  labs(x="Minutes Played", y=paste("Total Rebounds")) +
+  layer(data=PNN, 
+        mapping=aes(x=MP, y=TRB, color=POS), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="point",
+        geom_params=list(), 
+        #position=position_identity()
+        position=position_jitter(width=0.3, height=0)
+  )
+
+
+#Steals by position
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  labs(title='Steals By Position') +
+  labs(x="Personal Fouls", y=paste("Steals")) +
+  layer(data=PNN, 
+        mapping=aes(x=as.numeric(as.character(PF)), y=as.numeric(as.character(STL)), color=POS), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="point",
+        geom_params=list(), 
+        #position=position_identity()
+        position=position_jitter(width=0.3, height=0)
+  )
+
+
+#Blocks by Position
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  labs(title='Blocks By Position') +
+  labs(x="Personal Fouls", y=paste("Blocks")) +
+  layer(data=PNN, 
+        mapping=aes(x=as.numeric(as.character(PF)), y=as.numeric(as.character(BLK)), color=POS), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="point",
+        geom_params=list(), 
+        #position=position_identity()
+        position=position_jitter(width=0.3, height=0)
+  )
