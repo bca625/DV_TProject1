@@ -1,9 +1,6 @@
-KPI_Low_Max_value = 3     
-KPI_Medium_Max_value = 7
-
 crosstab <- df %>% 
   filter(CONF == "Big 12") %>% 
-  group_by(SCHOOL, POS, CLASS) %>% 
+  group_by(SCHOOL, CLASS) %>% 
   #summarize(sum_pts = sum(PTS), sum_games = sum(G)) %>% 
   mutate(PPG = PTS / G) %>% 
   summarize(avg_pts = mean(PPG)) %>% 

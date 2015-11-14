@@ -59,7 +59,7 @@ We can see the conferences that stand out above the rest. The ACC with powerhous
 
 We recreate this graph using ggplot2, the axes are flipped so that the conference names are readable.
 ```{r, warning=FALSE, message=FALSE }
-source("../03 R SQL Visualizations/PointsBYDivison.R", echo=TRUE)
+source("../03 R SQL Visualizations/PointsBYDivision.R", echo=TRUE)
 ```
 
 **Points By Position**
@@ -119,3 +119,17 @@ A similar trend appears in the defensive statistics as the quick, dextruous guar
 ```{r, warning=FALSE, message=FALSE }
 source("../03 R SQL Visualizations/StealsBlocks.R", echo=TRUE)
 ```
+
+
+**Blending Data: Points per Game in College vs Points per Game in the NBA**
+Every year, around 60 exceptional college basketball players see their dreams come to fruition as they get drafted into the National Basketball Association. These players, who have been the top dogs on evry team they've been on, are thrust into the gaunlet against some of the best athletes in the world. Egos are shattered as high school phenoms and hometown heroes become role-players and bench warmers. To visualize just how these players transition into the pros, we blended our 2014-2015 college basketball data with data from the current NBA season.
+
+  ![](./pics/Blend.png)
+
+We are only a few weeks into the current NBA season so the sample size is fairly small. However, we are still able to see the growing pains of many of the new NBA recruits.
+
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/Blend.R", echo=TRUE)
+```
+
+
