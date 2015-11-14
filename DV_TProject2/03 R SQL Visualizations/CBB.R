@@ -14,11 +14,11 @@ df <- data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.ed
 
 
 #Produce fisrt bar chart, rotated on its side so you can actually read the conferences
-ggplot(df, aes(CONF, PTS, fill=CONF)) + geom_bar(stat="identity") + coord_flip()
+ggplot(df, aes(CONF, PTS, fill=CONF)) + geom_bar(stat="identity") + geom_hline(yintercept=23425) + coord_flip()
 
 
 #Produce Second bar chart, rotated on its side so you can actually read the conferences
-ggplot(df, aes(CONF, PTS, fill=POS)) + geom_bar(stat="identity") + coord_flip()
+ggplot(df, aes(CONF, PTS, fill=POS)) + geom_bar(stat="identity") + geom_hline(yintercept=23425) + coord_flip()
 
 #PNN = Position Not NUll
 PNN <- df %>% filter(POS != "null") %>% tbl_df
@@ -174,7 +174,8 @@ draft <- data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas
 rooks <- right_join(CBB,draft,by='PLAYER')
 rookies <- rooks %>% mutate(cPPG = PTS.x / G.x) %>% filter(PLAYER != "null")
 
-ggplot(rookies, aes(PLAYER, cPPG, fill=CLASS)) + geom_bar(stat="identity") + coord_flip()
-ggplot(rookies, aes(PLAYER, round(as.numeric(as.character(PPG), 2)), fill=CLASS)) + geom_bar(stat="identity") + coord_flip()
+ggplot(rookies, aes(PLAYER, cPPG, fill=CLASS)) + geom_bar(stat="identity") + coord_flip() + ylab("PPG in College")
+
+ggplot(rookies, aes(PLAYER, round(as.numeric(as.character(PPG), 2)), fill=CLASS)) + geom_bar(stat="identity") + coord_flip() + ylab("PPG in NBA")
 
 

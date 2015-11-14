@@ -1,7 +1,7 @@
 ---
   output: html_document
 ---
-  Data Visualization Project 4: NCAA Division I Men's Basketball Statistics for the 2014-2015 Season
+  Data Visualization Project 4 & 5: NCAA Division I Men's Basketball Statistics for the 2014-2015 Season
 ===
   **Bryan Amaefule, Shannon Lu, Kevin Lee**
   
@@ -47,13 +47,20 @@ It takes a good amount of skill and talent to make it on to a Division I college
 
 
 **Visualizations** 
-
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/Setup.R", echo=TRUE)
+```
 **Points By Division**
 There are two big barometers in determining how successful a team is: how good are their players? and how tough was their competition? A team with a winning record in some conference full of scrubs like the AEC, isn't going to get the same credit or recognition as a team who battled it out through the grueling SEC or ACC conferences. To get a look at just how these conferences stack up against each other, we've created a bar chart of the total points scored by the schools in each division using the average amount of points and the 95% confidence interval as a reference line.
 
   ![](./pics/PointsByDivision.png)
   
-We can see the conferences that stand out above the rest. The ACC with powerhouses like Duke, North Carolina, Virginia, and Louisville; and the SEC with the 38-1 Kentucky Wildcats. And if you look *right* on the reference line you'll see the Big 12 conference, home to the University of Texas at Austin, sitting perfectly at the average. 
+We can see the conferences that stand out above the rest. The ACC with powerhouses like Duke, North Carolina, Virginia, and Louisville; and the SEC with the 38-1 Kentucky Wildcats. And if you look *right* on the reference line you'll see the Big 12 conference, home to the University of Texas at Austin, sitting perfectly at the average.
+
+We recreate this graph using ggplot2, the axes are flipped so that the conference names are readable.
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/PointsBYDivison.R", echo=TRUE)
+```
 
 **Points By Position**
 Prior to the NBA Draft, the two most talked about prospects were Duke's Jahlil Okafor and Kentucky's Karl-Anthony Towns, who both happen to be 7-foot tall, 260 pound athletic freaks-of-nature. However, the Los Angeles Lakers broke-away from their history of drafting big men, and selected Ohio State University's 6'5 point guard D'Angelo Russell with the number 2 pick. The Laker's front office caught a lot of flak for not "going big", and only time will tell whether or not they made the right choice. For now, we can visualize the scoring contributions in college basketball by adding the 'position' dimension to color on the previous bar chart. 
@@ -61,6 +68,12 @@ Prior to the NBA Draft, the two most talked about prospects were Duke's Jahlil O
   ![](./pics/PointsByPosition.png)
   
 We can see that a bulk of the scoring comes from Guard and Forward positions with the Centers putting up a few points here and there.  
+
+
+We once again recreate this graph using ggplot2 with flipped axes.
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/PointsByPosition.R", echo=TRUE)
+```
 
 **Points By Position and Classification in the Big 12**
 Narrowing our view down to just the Big 12 conference, we can create a crosstab of the average points per game, broken down by school, classification, and position. 
@@ -72,6 +85,19 @@ We use a key performance indicator to classify the scoring performance according
 
 While the scoreboard ultimately decides who wins or loses the ball game, there is much more to the game of basketball than just scoring points. Players can make their mark on the stat sheets on both offense and defense contributing through assists, rebounds, blocks, and steals.  
 
+
+Recreating this crosstab using ggplot proved to be challenging due to the multiple variables used on the y-axis. For our ggplot rendition, we've split the data int two crosstabs. One highlighting player's positions and the other highlighting their classification
+
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/ClassCrosstab.R", echo=TRUE)
+```
+
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/PosCrosstab.R", echo=TRUE)
+```
+
+
+
 **Assists and Rebounds by Position**
 Offensively, players can facilitate by creating scoring opportunities for their teammates and racking up assists. Taller, more athletic players can also snag rebounds of a missed shot, allowing the team another chance at scoring. We plot both the assist and rebound numbers of each player against the amount of minutes they played. To provide a little more insight into how each role contributes, we color each point of the scatter plot by position.  
 
@@ -79,7 +105,17 @@ Offensively, players can facilitate by creating scoring opportunities for their 
   
 It can be seen from the scatter plots that guards facilitate for their teammates at a much higher rate than forwards or centers. This is why a talented guard like D'Angelo Russell can get picked second overall in the draft in front of taller, more athletic players. The revesre seems to be true for rebounds, as the centers and forwards towering over the competition are able to snag the most rebounds off missed shots. 
 
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/AssistsRebounds.R", echo=TRUE)
+```
+
 **Steals and Blocks by Position**
 A similar trend appears in the defensive statistics as the quick, dextruous guards are able to steal the ball by playing the passing lanes or just plain ripping the ball from the guy they're defending. The towering big men, clogging up the area around the basket are more adept at swatting shots that come their way. They block more shots than their less vertically-gifted couterparts. 
 
   ![](./pics/StealsBlocks.png)
+  
+  
+  
+```{r, warning=FALSE, message=FALSE }
+source("../03 R SQL Visualizations/StealsBlocks.R", echo=TRUE)
+```
