@@ -92,3 +92,89 @@ ggplot() +
         #position=position_identity()
         position=position_jitter(width=0.3, height=0)
   )
+
+
+
+
+
+# df <- diamonds %>% group_by(color, clarity) %>% summarize(sum_price = sum(price), sum_carat = sum(carat)) %>% mutate(ratio = sum_price / sum_carat) %>% mutate(kpi = ifelse(ratio <= KPI_Low_Max_value, '03 Low', ifelse(ratio <= KPI_Medium_Max_value, '02 Medium', '01 High'))) %>% rename(COLOR=color, CLARITY=clarity, SUM_PRICE=sum_price, SUM_CARAT=sum_carat, RATIO=ratio, KPI=kpi)
+
+
+
+
+crosstab <- df %>% 
+  filter(CONF == "Big 12") %>% 
+  group_by(SCHOOL, POS, CLASS) %>% 
+  #summarize(sum_pts = sum(PTS), sum_games = sum(G)) %>% 
+  mutate(PPG = PTS / G) %>% 
+  summarize(avg_pts = mean(PPG)) %>% 
+  mutate(kpi = ifelse(avg_pts <= KPI_Low_Max_value, 'Low', ifelse(avg_pts <= KPI_Medium_Max_value, 'Medium', 'High'))) %>% 
+  rename(KPI=kpi)
+
+#Poits by Classification in the Big 12
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_discrete() +
+  scale_y_discrete() +
+  labs(title='Points by Classification in the Big 12') +
+  labs(x=paste("SCHOOL"), y=paste("CLASS")) +
+  layer(data=crosstab, 
+        mapping=aes(x=SCHOOL, y=CLASS, label=round(avg_pts, 2)), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="text",
+        geom_params=list(colour="black"), 
+        position=position_identity()
+  ) +
+  layer(data=crosstab, 
+        mapping=aes(x=SCHOOL, y=CLASS, fill=KPI), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="tile",
+        geom_params=list(alpha=0.50), 
+        position=position_identity()
+  )
+
+
+
+#Points by Position
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_discrete() +
+  scale_y_discrete() +
+  labs(title='Points by Position in the Big 12') +
+  labs(x=paste("SCHOOL"), y=paste("POSITION")) +
+  layer(data=crosstab, 
+        mapping=aes(x=SCHOOL, y=POS, label=round(avg_pts, 2)), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="text",
+        geom_params=list(colour="black"), 
+        position=position_identity()
+  ) +
+  layer(data=crosstab, 
+        mapping=aes(x=SCHOOL, y=CLASS, fill=KPI), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="tile",
+        geom_params=list(alpha=0.50), 
+        position=position_identity()
+  )
+
+
+
+
+
+CBB <- data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= "select * from CBB;"
+')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_ba7433', PASS='orcl_ba7433', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON', p1=KPI_Low_Max_value, p2=KPI_Medium_Max_value), verbose = TRUE))); View(df)
+
+draft <- data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= "select * from draft;"
+')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_ba7433', PASS='orcl_ba7433', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON', p1=KPI_Low_Max_value, p2=KPI_Medium_Max_value), verbose = TRUE))); View(df)
+
+rooks <- right_join(CBB,draft,by='PLAYER')
+rookies <- rooks %>% mutate(cPPG = PTS.x / G.x) %>% filter(PLAYER != "null")
+
+ggplot(rookies, aes(PLAYER, cPPG, fill=CLASS)) + geom_bar(stat="identity") + coord_flip()
+ggplot(rookies, aes(PLAYER, round(as.numeric(as.character(PPG), 2)), fill=CLASS)) + geom_bar(stat="identity") + coord_flip()
+
+
