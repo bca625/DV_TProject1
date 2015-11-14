@@ -47,9 +47,16 @@ It takes a good amount of skill and talent to make it on to a Division I college
 
 
 **Visualizations** 
+
+First we setup our environment with the the variables and data frames we need.
 ```{r, warning=FALSE, message=FALSE }
 source("../03 R SQL Visualizations/Setup.R", echo=TRUE)
 ```
+
+The measures in our ELT operations are as follows:
+![](./pics/CBB_ELT.png)
+![](./pics/Draft_ELT.png)
+
 **Points By Division**
 There are two big barometers in determining how successful a team is: how good are their players? and how tough was their competition? A team with a winning record in some conference full of scrubs like the AEC, isn't going to get the same credit or recognition as a team who battled it out through the grueling SEC or ACC conferences. To get a look at just how these conferences stack up against each other, we've created a bar chart of the total points scored by the schools in each division using the average amount of points and the 95% confidence interval as a reference line.
 
